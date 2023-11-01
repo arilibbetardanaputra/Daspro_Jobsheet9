@@ -1,14 +1,11 @@
 import java.util.Scanner;
-
 public class TugasPertemuan9_05 {
-
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int[] nilai;
-        int nilaitinggi = Integer.MIN_VALUE; 
-        int nilairendah = Integer.MAX_VALUE; 
+        int nilaitinggi = 0;
+        int nilairendah = 0;
         int jmlhnilaitinggi = 0;
-        int jmlhnilairendah = 0;
         int nilaitertinggi = 0;
         int nilaiterendah = 0;
         double total = 0;
@@ -17,35 +14,27 @@ public class TugasPertemuan9_05 {
 
         System.out.print("Masukkan Jumlah Nilai yang ingin ditambahkan : ");
         int x = input.nextInt();
-        nilai = new int[x];
+        nilai = new int[x]; 
 
-        for (int i = 0; i < nilai.length; i++) {
+        for (int i = 0; i < nilai.length; i++){
             System.out.print("Masukkan nilai ke-" + (i + 1) + " : ");
             nilai[i] = input.nextInt();
-
-            if (nilai[i] > nilaitertinggi) {
+            if (nilaitertinggi < nilai[i]) {
                 nilaitertinggi = nilai[i];
-            }
-            if (nilai[i] < nilaiterendah) {
-                nilaiterendah = nilai[i];
-            }
-            
+            }else nilaiterendah = nilai[i];
+        }
+        for (int i = 0; i < nilai.length; i++) {
+            total += nilai[i];
             if (nilai[i] > 70) {
                 jmlhnilaitinggi += nilai[i];
-            } else {
-                jmlhnilairendah += nilai[i];
-            }
+                nilaitinggi++;
+            }else nilairendah++;
         }
 
-        if (jmlhnilaitinggi > 0) {
-            ratanilaitinggi = (double) jmlhnilaitinggi / (nilai.length - jmlhnilairendah);
-        }
-        if (jmlhnilairendah > 0) {
-            ratanilarendah = (double) jmlhnilairendah / (nilai.length - jmlhnilaitinggi);
-        }
-
+        ratanilaitinggi = jmlhnilaitinggi / nilaitinggi;
+        ratanilarendah = (total - jmlhnilaitinggi) / nilairendah;
         System.out.println("Nilai tertinggi = " + nilaitertinggi);
-        System.out.println("Nilai terendah = " + nilaiterendah);
+        System.out.println("Nilai terendah = " + nilaiterendah );
         System.out.println("Rata-rata nilai tinggi = " + ratanilaitinggi);
         System.out.println("Rata-rata nilai rendah = " + ratanilarendah);
 
